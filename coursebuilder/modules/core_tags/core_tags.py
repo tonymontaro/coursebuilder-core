@@ -21,6 +21,7 @@ import re
 import urllib
 import urlparse
 from xml.etree import cElementTree
+from lxml import etree as ElementTree
 import markdown
 
 import appengine_config
@@ -477,6 +478,39 @@ class YouTube(CoreTag):
         return reg
 
 
+class CarouselContent(CoreTag):
+    @classmethod
+    def name(cls):
+        return 'Carousel Content'
+
+    def render(self, node, handler):
+        content = node.attrib.get('carousel_content')
+        return self._render_carousel(content)
+
+    def _render_carousel(self, content):
+        content = content.split('[split]')
+
+        result = '<div class="owl-carousel owl-theme course-carousel">'
+        for item in content:
+            item = item.strip()
+            if item:
+                result += '<div class="item">%s</div>' %item
+        result += '</div>'
+
+        return ElementTree.HTML(result)
+
+
+    def get_icon_url(self):
+        return self.create_icon_url('carousel.png')
+
+    def get_schema(self, unused_handler):
+        reg = schema_fields.FieldRegistry(CarouselContent.name())
+        reg.add_property(schema_fields.SchemaField(
+            'carousel_content', 'Carousel Content', 'html',
+            description=messages.CAROUSEL_DESCRIPTION, optional=False, i18n=True))
+        return reg
+
+
 class Html5Video(CoreTag):
 
     @classmethod
@@ -725,7 +759,7 @@ def register_module():
 
     custom_tags = [
         GoogleDoc, GoogleDrive, GoogleSpreadsheet, YouTube, Html5Video,
-        GoogleGroup, IFrame, Include, Markdown]
+        GoogleGroup, IFrame, Include, Markdown, CarouselContent]
 
     def make_binding_name(custom_tag):
         return 'gcb-%s' % custom_tag.__name__.lower()

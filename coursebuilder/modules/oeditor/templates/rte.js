@@ -333,6 +333,7 @@ function bindEditorField(Y) {
    * list.
    */
   RichTextEditor.prototype.TAG_BUTTON_ORDER = [
+    'gcb-carouselcontent',
     'question',
     'question-group',
     'gcb-youtube',
