@@ -276,7 +276,9 @@ function bindEditorField(Y) {
     { type: 'separator' },
     {
       group: 'insertitem', label: 'Insert Item',
-      buttons: []
+      buttons: [
+        { type: 'push', label: 'Insert Image', value: 'insertimage' },
+      ]
     }
   ];
   /* See http://yui.github.io/yui2/docs/yui_2.9.0_full/examples/editor/toolbar_editor.html */
@@ -437,12 +439,6 @@ function bindEditorField(Y) {
         type: 'push',
         label: 'HTML Link',
         value: 'createlink',
-        disabled: false
-      },
-      {
-        type: 'push',
-        label: 'Image',
-        value: 'insertimage',
         disabled: false
       }
     ];

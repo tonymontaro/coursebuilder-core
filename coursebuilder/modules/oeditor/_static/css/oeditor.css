@@ -897,3 +897,7 @@ div.new-form-layout .inputEx-Field.embed-code-snippet-display textarea {
   text-decoration: none;
   cursor: pointer;
 }
+
+.oeditor-popup #openCarouselHelp {
+  display: none;
+}

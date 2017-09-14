@@ -727,13 +727,7 @@ label.settings.gcb-toggle-button {
 }
 
 .explain-img-sm {
-  height: 30px;
-}
-
-.modal-body pre {
-  background-color: #eee;
-  border-radius: 5px;
-  padding-top: 15px;
+  height: 70px;
 }
 
 .CodeMirror-scroll {
